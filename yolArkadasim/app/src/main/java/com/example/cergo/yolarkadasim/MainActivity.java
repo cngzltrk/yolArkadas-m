@@ -42,7 +42,19 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             //alınan response json formatındaki değeri parse ederiz
                             JSONObject jsonObj = new JSONObject(response);
-                            Toast.makeText(getApplicationContext(),jsonObj.getString("kadi"),Toast.LENGTH_SHORT).show();
+                            String asd=jsonObj.getString("kadi");
+                            if(asd.equals("null"))
+                            {
+                                Toast.makeText(getApplicationContext(),"Kullanıcı adı veya sifre hatalı",Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                String id[]={jsonObj.getString("id"),jsonObj.getString("kadi"),jsonObj.getString("email"),jsonObj.getString("uyeTuru")};
+                                Intent i=new Intent(MainActivity.this, menuActivitiy.class);
+                                i.putExtra("id" ,id);
+                                startActivity(i);
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
