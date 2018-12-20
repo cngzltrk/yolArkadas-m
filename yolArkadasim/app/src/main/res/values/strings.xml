@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Yol Arkadasim</string>
+
+    <string-array name="Main">
+        <item> Gramer  </item>
+        <item> Film</item>
+        <item> Kitap </item>
+        <item> Muzik </item>
+        <item> Takip Oneri siteleri </item>
+    </string-array>
 </resources>

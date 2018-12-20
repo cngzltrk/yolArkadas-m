@@ -6,19 +6,23 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     tools:context=".menuActivitiy">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/main"
-            android:layout_gravity="center"
-            android:textSize="24dp"
-            android:textAlignment="center"
-            android:text="main layout"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/lvMain"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:dividerHeight="10dp"
+            android:divider="@null">
+        </ListView>
+
+    </RelativeLayout>
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:id="@+id/nav_view"
