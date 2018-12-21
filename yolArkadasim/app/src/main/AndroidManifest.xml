@@ -21,7 +21,10 @@
         <activity android:name=".kayitActivity" />
         <activity android:name=".menuActivitiy" />
         <activity android:name=".profil" />
-        <activity android:name=".profilDuzenle"></activity>
+        <activity android:name=".profilDuzenle" />
+        <activity android:name=".KonuActivity" />
+        <activity android:name=".KonuDetay" />
+        <activity android:name=".konuEkle"></activity>
     </application>
 
 </manifest>

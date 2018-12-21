@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ScrollView01"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent">
+
+
+        <EditText
+            android:id="@+id/etBaslik"
+
+            android:layout_width="536dp"
+            android:layout_height="wrap_content"
+            android:hint="Başlık giriniz.."
+            android:inputType="textPersonName"></EditText>
+
+        <Spinner
+            android:id="@+id/konuTur"
+            android:layout_height="wrap_content"
+            android:prompt="@string/appbar_scrolling_view_behavior"
+            android:layout_width="fill_parent"
+            android:entries="@array/Main">
+        </Spinner>
+
+        <EditText
+            android:id="@+id/etIcerik"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="İcerik giriniz..."
+
+            android:lines="10"></EditText>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="182dp"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardCornerRadius="25dp"
+            android:onClick="konuEkle"
+            app:cardElevation="11dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewww"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Submit"
+                    android:textColor="#fff"
+                    android:textSize="18dp" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>

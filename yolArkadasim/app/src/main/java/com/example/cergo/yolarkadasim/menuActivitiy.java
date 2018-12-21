@@ -21,9 +21,23 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class menuActivitiy extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private ListView listView;
     TextView profil;
+    String serverurl="http://192.168.1.9/yolArkadas/konuListele.php";
     String id[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,30 +59,96 @@ public class menuActivitiy extends AppCompatActivity  implements NavigationView.
         SimpleAdapter simpleAdapter = new SimpleAdapter(this, title);
         listView.setAdapter(simpleAdapter);
 
-        /*listView.setOnItemClickListener(
+        listView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
                         switch(position){
                             case 0: {
                                 //String a=String.valueOf(parent.getItemAtPosition(position));
-                                //Toast.makeText(MainActivity.this,a,Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(MainActivity.this, gramerActivity.class);
-                                startActivity(intent);
+                                //Toast.makeText(getApplicationContext(),a,Toast.LENGTH_SHORT).show();
+
+                                veriGetir("1");
                                 break;
                             }
                             case 1: {
+                                veriGetir("2");;
                                 break;
                             }
                             case 2: {
+                                veriGetir("3");
+
                                 break;
                             }
                             case 3: {
+                                veriGetir("4");
+                                break;
+                            }
+                            case 4: {
+                                veriGetir("5");
                                 break;
                             }
                         }
+
                     }
-                });*/
+                });
+    }
+    private void veriGetir(final String konuid)
+    {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, serverurl,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //alınan response json formatındaki değeri parse ederiz
+
+                            JSONArray jsonArray = new JSONArray(response);
+                            String konu[]=new String[jsonArray.length()];
+                            String konuID[]=new String[jsonArray.length()];
+                            for (int i=0; i<jsonArray.length(); i++) {
+                                JSONObject actor = jsonArray.getJSONObject(i);
+                                String name = actor.getString("adi");
+                                String kid = actor.getString("id");
+                                konu[i]=name;
+                                konuID[i]=kid;
+                            }
+                            Intent intent = new Intent(getApplicationContext(), KonuActivity.class);
+                            intent.putExtra("konu",konu);
+                            intent.putExtra("konuID",konuID);
+                            startActivity(intent);
+                            /*String asd=jsonObj.getString("kadi");
+                            if(asd.equals("null"))
+                            {
+                                Toast.makeText(getApplicationContext(),"Kullanıcı adı veya sifre hatalı",Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                String id[]={jsonObj.getString("id"),jsonObj.getString("kadi"),jsonObj.getString("email"),jsonObj.getString("uyeTuru")};
+                                Intent i=new Intent(MainActivity.this, menuActivitiy.class);
+                                i.putExtra("id" ,id);
+                                startActivity(i);
+                            }*/
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),"hatalı islem",Toast.LENGTH_SHORT).show();
+            }
+        }){
+            protected Map<String,String> getParams() throws AuthFailureError {
+                Map<String,String> deger=new HashMap<>();
+                deger.put("konuTipi",konuid);
+
+                return deger;
+            }
+        };
+        MySingleton.getInstance(getApplicationContext()).addToRequest(stringRequest);
     }
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -94,6 +174,18 @@ public class menuActivitiy extends AppCompatActivity  implements NavigationView.
             Intent in=new Intent(this, profilDuzenle.class);
             in.putExtra("id" ,id);
             startActivity(in);
+        }
+        else if(id2==R.id.nav_add)
+        {
+            if(id[3].equals("2"))
+                Toast.makeText(getApplicationContext(),"Yetkisiz giris",Toast.LENGTH_SHORT).show();
+            else
+            {
+                Intent in=new Intent(this, konuEkle.class);
+                in.putExtra("id" ,id);
+                startActivity(in);
+            }
+
         }
         else if(id2==R.id.nav_logout)
         {

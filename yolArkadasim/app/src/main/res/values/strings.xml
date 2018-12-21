@@ -8,4 +8,12 @@
         <item> Muzik </item>
         <item> Takip Oneri siteleri </item>
     </string-array>
+    <string-array name="Week">
+        <item> Monday </item>
+        <item> Tuesday </item>
+        <item> Wednesday </item>
+        <item> Thursday </item>
+        <item> Friday </item>
+        <item> Saturday </item>
+    </string-array>
 </resources>
