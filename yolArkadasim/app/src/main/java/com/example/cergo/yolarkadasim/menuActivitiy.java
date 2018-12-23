@@ -68,7 +68,7 @@ public class menuActivitiy extends AppCompatActivity  implements NavigationView.
                         switch(position){
                             case 0: {
                                 //String a=String.valueOf(parent.getItemAtPosition(position));
-                                //Toast.makeText(getApplicationContext(),a,Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show();
 
                                 veriGetir("1");
                                 break;
@@ -118,18 +118,7 @@ public class menuActivitiy extends AppCompatActivity  implements NavigationView.
                             intent.putExtra("konu",konu);
                             intent.putExtra("konuID",konuID);
                             startActivity(intent);
-                            /*String asd=jsonObj.getString("kadi");
-                            if(asd.equals("null"))
-                            {
-                                Toast.makeText(getApplicationContext(),"Kullanıcı adı veya sifre hatalı",Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                String id[]={jsonObj.getString("id"),jsonObj.getString("kadi"),jsonObj.getString("email"),jsonObj.getString("uyeTuru")};
-                                Intent i=new Intent(MainActivity.this, menuActivitiy.class);
-                                i.putExtra("id" ,id);
-                                startActivity(i);
-                            }*/
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
